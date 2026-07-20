@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "titulo": "Congreso de Inteligencia Artificial",
+        "descripcion": "Evento académico sobre IA",
+        "fecha": "2026-08-15",
+        "hora": "09:00",
+        "lugar": "Auditorio Principal",
+        "tipo": "Congreso"
+    }
+]
