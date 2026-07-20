@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Nuevo evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input formControlName="titulo" placeholder="Ej: Congreso de IA"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion" placeholder="Detalle del evento"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha</ion-label>
+      <ion-input formControlName="fecha" type="date"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Hora</ion-label>
+      <ion-input formControlName="hora" type="time"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Lugar</ion-label>
+      <ion-input formControlName="lugar" placeholder="Ej: Auditorio Principal"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tipo</ion-label>
+      <ion-select formControlName="tipo" interface="popover">
+        <ion-select-option value="Conferencia">Conferencia</ion-select-option>
+        <ion-select-option value="Taller">Taller</ion-select-option>
+        <ion-select-option value="Seminario">Seminario</ion-select-option>
+        <ion-select-option value="Feria">Feria</ion-select-option>
+        <ion-select-option value="Coloquio">Coloquio</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top" [disabled]="guardando">
+      Guardar evento
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/eventos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding" *ngIf="evento">
+  <h1>{{ evento.titulo }}</h1>
+  <ion-badge color="medium">{{ evento.estadoSync || 'SINCRONIZADO' }}</ion-badge>
+
+  <ion-item lines="none">
+    <ion-label>
+      <p>Fecha</p>
+      <h3>{{ evento.fecha }} - {{ evento.hora }}</h3>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label>
+      <p>Lugar</p>
+      <h3>{{ evento.lugar }}</h3>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label>
+      <p>Tipo</p>
+      <h3>{{ evento.tipo }}</h3>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none" *ngIf="evento.descripcion">
+    <ion-label>
+      <p>Descripción</p>
+      <p>{{ evento.descripcion }}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>

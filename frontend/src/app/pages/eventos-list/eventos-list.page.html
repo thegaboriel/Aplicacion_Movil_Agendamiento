@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Eventos académicos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="sincronizar()" [disabled]="sincronizando">
+        <ion-spinner *ngIf="sincronizando" name="crescent"></ion-spinner>
+        <ion-icon *ngIf="!sincronizando" slot="icon-only" name="sync-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="cargarEventos($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <p class="estado-conexion" *ngIf="mensajeEstado">
+    <ion-icon *ngIf="origenDatos === 'LOCAL'" name="cloud-offline-outline"></ion-icon>
+    {{ mensajeEstado }}
+  </p>
+
+  <ion-list *ngIf="!cargando">
+    <ion-item *ngFor="let evento of eventos" [routerLink]="['/eventos', evento.id]" button>
+      <ion-label>
+        <h2>{{ evento.titulo }}</h2>
+        <p>{{ evento.fecha }} · {{ evento.hora }} · {{ evento.lugar }}</p>
+      </ion-label>
+      <ion-badge [color]="colorEstado(evento)" slot="end">
+        {{ evento.estadoSync || 'SINCRONIZADO' }}
+      </ion-badge>
+    </ion-item>
+
+    <ion-item *ngIf="eventos.length === 0">
+      <ion-label>No hay eventos registrados todavía.</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/eventos/nuevo">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
